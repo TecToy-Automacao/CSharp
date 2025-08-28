@@ -26,6 +26,10 @@ Demonstrar a integração direta entre uma aplicação e o **Pinpad Android (PAX
     <td><b>DpPayloadRequestReversal.cs</b></td>
     <td>Representa uma requisição de cancelamento de transação no DirectPIN. Usada para serializar e desserializar informações de estorno em JSON.</td>
   </tr>
+    <tr>
+    <td><b>DpPayloadRequestAbort.cs</b></td>
+    <td>Representa uma requisição de abortar uma transação no DirectPIN. Utiliza serialização JSON para envio da mensagem de abortar operação.</td>
+  </tr>
   <tr>
     <td><b>DpPayloadResponseTransaction.cs</b></td>
     <td>Representa a resposta de uma transação no DirectPIN. Usada para interpretar os dados retornados após uma operação de pagamento.</td>
@@ -100,7 +104,7 @@ Demonstrar a integração direta entre uma aplicação e o **Pinpad Android (PAX
   "amount": 1000,
   "nsu": "17557121803052335",
   "nsuAcquirer": "810488",
-  "panMasked": "524831******3676",
+  "panMasked": "524831******3590",
   "date": 1755700126088,
   "typeCard": "CONTACTLESS_EMV",
   "finalResult": "APPROVED",
@@ -115,7 +119,7 @@ Demonstrar a integração direta entre uma aplicação e o **Pinpad Android (PAX
   "nsu": "17557121803052335",
 }
 ```
-## Exemplo de resposta do Cancelamento
+## Exemplo de Resposta do Cancelamento
 ```json
 {
    "message":"Transação cancelada com sucesso",
@@ -124,4 +128,9 @@ Demonstrar a integração direta entre uma aplicação e o **Pinpad Android (PAX
    "type":"CANCELLATION"
 }
 ```
-
+## Exemplo de Payload Abortar Operação
+```json
+{
+  "type": "abort",
+}
+```

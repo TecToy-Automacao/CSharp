@@ -69,6 +69,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rtbRespostas = new System.Windows.Forms.RichTextBox();
             this.btnLimparRespostas = new System.Windows.Forms.Button();
+            this.btnAbort = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWriteTimeOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudReadTimeOut)).BeginInit();
@@ -537,11 +538,22 @@
             this.btnLimparRespostas.UseVisualStyleBackColor = true;
             this.btnLimparRespostas.Click += new System.EventHandler(this.btnLimparRespostas_Click);
             // 
+            // btnAbort
+            // 
+            this.btnAbort.Location = new System.Drawing.Point(475, 349);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(139, 23);
+            this.btnAbort.TabIndex = 33;
+            this.btnAbort.Text = "Abortar Transação";
+            this.btnAbort.UseVisualStyleBackColor = true;
+            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 381);
+            this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.btnLimparRespostas);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -610,6 +622,7 @@
         private System.Windows.Forms.NumericUpDown nudReadTimeOut;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.NumericUpDown nudValorTransacao;
+        private System.Windows.Forms.Button btnAbort;
     }
 }
 

@@ -331,6 +331,51 @@ namespace DemoDirectPin
             }
         }
 
+        private async void btnAbort_Click(object sender, EventArgs e)
+        {
+            Log("-- Abortar Transação --");
+
+            if (_serialPort == null || !_serialPort.IsOpen)
+            {
+                Log("Porta serial não está aberta.");
+                return;
+            }
+
+            try
+            {
+                var request = new DpPayloadRequestAbort();
+                {
+                    request.Type = "abort";
+                }
+
+                string payload = JsonSerializer.Serialize(request);
+                Log("- Payload JSON -");
+                Log(payload);
+
+                string base64 = Utils.ToBase64(payload);
+                ushort crc = Utils.StringCrcCCITT(base64);
+                byte crcHigh = (byte)((crc >> 8) & 0xFF);
+                byte crcLow = (byte)(crc & 0xFF);
+
+                byte SYN = 0x16;
+                byte ETB = 0x17;
+
+                List<byte> messageBytes = new List<byte>();
+                messageBytes.Add(SYN);
+                messageBytes.AddRange(Encoding.ASCII.GetBytes(base64));
+                messageBytes.Add(crcHigh);
+                messageBytes.Add(crcLow);
+                messageBytes.Add(ETB);
+
+                _serialPort.Write(messageBytes.ToArray(), 0, messageBytes.Count);
+            }
+            catch (Exception ex)
+            {
+                Log("Erro geral: " + ex.Message);
+            }
+
+        }
+
         private void btnLimparRespostas_Click(object sender, EventArgs e)
         {
             rtbRespostas.Clear();
