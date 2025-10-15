@@ -498,7 +498,18 @@ namespace DemoDirectPin
 
         private void Log(string texto)
         {
-            rtbRespostas.AppendText(texto + Environment.NewLine);
+            if (rtbRespostas.InvokeRequired)
+            {
+                rtbRespostas.Invoke(new Action(() =>
+                {
+                    rtbRespostas.AppendText(texto + Environment.NewLine);
+                }));
+            }
+            else
+            {
+                rtbRespostas.AppendText(texto + Environment.NewLine);
+            }
+
             File.AppendAllText(_logFilePath, texto + Environment.NewLine);
         }
 
